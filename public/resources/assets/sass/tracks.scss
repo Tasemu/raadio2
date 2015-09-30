@@ -1,0 +1,43 @@
+.new-track-form {
+	&--series-list {
+		>ul {
+			margin: 0;
+			padding: 0;
+
+			>li {
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				cursor: pointer;
+			}
+		}
+	}
+
+	&--series.active {
+		.new-track-form--series-details {
+			background-color: #ADEC9E;
+		}
+	}
+
+	&--series-image {
+		width: 120px;
+		height: 120px;
+	    background-size: cover;
+	    background-position: center;
+	}
+
+	&--series-details {
+		flex-grow: 1;
+		padding: 15px;
+		background-color: #e1e1e1;
+		>.anime-title {
+			font-size: 18px;
+    		font-weight: 700;
+		}
+
+		> p {
+			font-size: 11px;
+		}
+	}
+}

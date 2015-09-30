@@ -1,2 +1,17 @@
 .DS_STORE
 .vagrant
+public/config/filesystems.php
+public/bootstrap/compiled.php
+public/vendor
+public/build/logs
+public/build/coverage
+public/app/tests/_log
+publiccomposer.phar
+public.DS_Store
+public/.idea
+public/_ide_helper.php
+public/app/config/packages
+public/public/packages
+public/node_modules
+public/.env
+public/storage

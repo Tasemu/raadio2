@@ -1,0 +1,11 @@
+.sidebar-anime-list	{
+	&--anime {
+		display: flex;
+		flex-direction: row;
+    	align-items: center;
+	}
+
+	&--anime-image {
+		width: 100px;
+	}
+}
