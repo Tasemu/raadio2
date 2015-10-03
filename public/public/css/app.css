@@ -6479,7 +6479,7 @@ button.close {
 .sidebar-anime-list--anime-image {
   width: 100px; }
 
-.home-tracks .new-track > a {
+.home-tracks .new-track > span {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -6492,7 +6492,8 @@ button.close {
   width: 100%;
   margin-bottom: 5px;
   border-bottom: 1px solid #333;
-  color: #333; }
+  color: #333;
+  cursor: pointer; }
 
 .home-tracks .new-track--details {
   position: relative;

@@ -1,9 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-	<div class="row">
-		<div class="col-md-8 home-tracks">
-			@foreach($tracks as $t)
+<div class="row">
+	<div class="col-md-3">
+		<img src="{{ $anime->image }}" alt="{{ $anime->name }}" style="width:100%">
+	</div>
+	<div class="col-md-9">
+		<h1>{{ $anime->name }}</h1>
+		<p>{{ $anime->synopsis }}</p>
+		<div class="home-tracks">
+			@foreach($anime->tracks as $t)
 			<div class="new-track">
 				<span class="new-track--link" data-href="https://s3-us-west-2.amazonaws.com/raadiotracks/{{$t->id}}.mp3">
 					<div class="new-track--thumbnail" style="background-image:url({{ $t->anime->image }})">
@@ -16,13 +22,11 @@
 						<div class="new-track--title">
 							<span>{{ $t->name }}</span>
 						</div>
-						<div class="new-track--anime">
-							<a class="new-track--anime-link" href="{{ url('anime', [$t->anime->id]) }}"><span>{{ $t->anime->name }}</span></a>
-						</div>
 					</span>
 				</span>
 			</div>
 			@endforeach
 		</div>
-	</div>
+	</div>	
+</div>
 @endsection

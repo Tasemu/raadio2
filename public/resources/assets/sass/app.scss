@@ -7,7 +7,7 @@
 
 .home-tracks {
 	.new-track {
-		>a {
+		>span {
 			display: flex;
 			flex-direction: row;
 			align-items: stretch;
@@ -15,6 +15,7 @@
 			margin-bottom: 5px;
 			border-bottom: 1px solid #333;
 			color: #333;
+			cursor: pointer;
 		}
 
 		&--details {

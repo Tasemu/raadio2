@@ -6,8 +6,12 @@ $(function () {
 	var musicPlayer = new MusicPlayer();
 
 	$('.new-track--link').click(e => {
-		musicPlayer.setSource($(e.currentTarget).attr('href'), $(e.currentTarget));
+		musicPlayer.setSource($(e.currentTarget).attr('data-href'), $(e.currentTarget));
 		musicPlayer.play();
 		e.preventDefault();
+	});
+
+	$('.new-track--anime-link').click(e => {
+		e.stopPropagation();
 	});
 });

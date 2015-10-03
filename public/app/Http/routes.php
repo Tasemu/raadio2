@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getIndex']);
+Route::get('anime/{id}', ['as' => 'anime.show', 'uses' => 'AnimeController@show']);
 
 // Authentication routes...
 Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
