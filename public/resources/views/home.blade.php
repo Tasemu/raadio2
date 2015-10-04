@@ -24,5 +24,14 @@
 			</div>
 			@endforeach
 		</div>
+		<div class="col-md-4">
+			<ul class="new-playlists">
+				@foreach($playlists as $playlist)
+				<li class="new-playlists--new-playlist">
+					<a href="{{ route('playlists.show', [$playlist->id]) }}" class="new-playlists--playlist-name">{{ $playlist->name }}</a>
+				</li>
+				@endforeach
+			</ul>
+		</div>
 	</div>
 @endsection

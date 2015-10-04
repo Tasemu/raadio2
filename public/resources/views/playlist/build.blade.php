@@ -2,6 +2,7 @@
 @section('content')
 <div class="row">
 	<form class="playlist-builder" action="{{ route('playlists.store') }}" method="post">
+		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 		<input type="hidden" name="playlist_name" value="{{ $playlist_name }}">
 		<div class="col-md-6 playlist-builder--chooser">
 			<input type="text" class="playlist-builder--search">
@@ -23,6 +24,7 @@
 		</div>
 		<div class="col-md-6 playlist-builder--chosen">
 			<ul class="playlist-builder--selected-tracks"></ul>
+			<input type="submit" class="btn" value="Create Playlist">
 		</div>
 	</form>
 </div>

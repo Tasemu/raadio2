@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Playlist;
 use App\Anime;
+use App\Track;
+use Auth;
 
 class PlaylistController extends Controller
 {
@@ -43,7 +46,17 @@ class PlaylistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $playlist = new Playlist;
+        $playlist->name = $request->input('playlist_name');
+        $playlist->user_id = Auth::user()->id;
+        $playlist->save();
+
+        foreach($request->input('playlist_track') as $track)
+        {
+            $playlist->tracks()->save(Track::find($track));
+        }
+
+        return redirect()->route('home')->with('status', 'Playlist created!');
     }
 
     /**
@@ -54,7 +67,8 @@ class PlaylistController extends Controller
      */
     public function show($id)
     {
-        //
+        $playlist = Playlist::with('tracks')->first();
+        return view('playlist.show', ['playlist' => $playlist]);
     }
 
     /**

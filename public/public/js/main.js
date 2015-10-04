@@ -217,8 +217,8 @@ module.exports = (function () {
 	}, {
 		key: 'render',
 		value: function render() {
-			var trackNodes = _.map(this.selectedTracks, function (track) {
-				return '<li class="playlist-builder--selected-track" data-id="' + track.id + '">' + track.name + '</li>';
+			var trackNodes = _.map(this.selectedTracks, function (track, index) {
+				return '<li class="playlist-builder--selected-track" data-id="' + track.id + '">\n\t\t\t\t' + track.name + '\n\t\t\t\t<input type="hidden" name="playlist_track[' + index + ']" value="' + track.id + '">\n\t\t\t</li>';
 			});
 
 			$('.playlist-builder--selected-tracks').html(trackNodes);
