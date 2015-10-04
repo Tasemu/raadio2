@@ -25,6 +25,8 @@ Route::post('auth/register', ['as' => 'processregister', 'uses' => 'Auth\AuthCon
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('tracks/anime', ['as' => 'tracks.setanime', 'uses' => 'TrackController@setAnime']);
-	Route::resource('tracks', 'TrackController');	
+	Route::resource('tracks', 'TrackController');
+	Route::get('playlists/build', ['as' => 'playlists.build', 'uses' => 'PlaylistController@build']);
+	Route::resource('playlists', 'PlaylistController');
 });
 

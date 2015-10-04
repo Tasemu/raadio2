@@ -3,19 +3,37 @@
 
 var TrackAnimeSelector = require('./modules/track-anime-selector.js');
 var MusicPlayer = require('./modules/music-player.js');
+var PlaylistBuilder = require('./modules/playlist-builder.js');
 
 $(function () {
 	TrackAnimeSelector.init();
 	var musicPlayer = new MusicPlayer();
 
 	$('.new-track--link').click(function (e) {
-		musicPlayer.setSource($(e.currentTarget).attr('href'), $(e.currentTarget));
+		musicPlayer.setSource($(e.currentTarget).attr('data-href'), $(e.currentTarget));
 		musicPlayer.play();
 		e.preventDefault();
 	});
+
+	$('.new-track--anime-link').click(function (e) {
+		e.stopPropagation();
+	});
+
+	$('.playlist-builder').each(function () {
+
+		var playlistBuilder = new PlaylistBuilder();
+
+		$('.playlist-builder--track').click(function (e) {
+			playlistBuilder.selectSong({ name: $(e.currentTarget).text(), id: $(e.currentTarget).attr('data-id') });
+		});
+
+		$('.playlist-builder--selected-tracks').on('click', '.playlist-builder--selected-track', function (e) {
+			playlistBuilder.removeSong({ name: $(e.currentTarget).text(), id: $(e.currentTarget).attr('data-id') });
+		});
+	});
 });
 
-},{"./modules/music-player.js":2,"./modules/track-anime-selector.js":3}],2:[function(require,module,exports){
+},{"./modules/music-player.js":2,"./modules/playlist-builder.js":3,"./modules/track-anime-selector.js":4}],2:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -165,6 +183,52 @@ var MusicPlayer = (function () {
 module.exports = MusicPlayer;
 
 },{}],3:[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+module.exports = (function () {
+	function PlaylistBuilder() {
+		_classCallCheck(this, PlaylistBuilder);
+
+		this.selectedTracks = [];
+	}
+
+	_createClass(PlaylistBuilder, [{
+		key: 'selectSong',
+		value: function selectSong(track) {
+			this.selectedTracks.push(track);
+			console.log(this.selectedTracks);
+			this.render();
+		}
+	}, {
+		key: 'removeSong',
+		value: function removeSong(track) {
+			this.selectedTracks = _.filter(this.selectedTracks, function (selected) {
+				return selected.id !== track.id;
+			});
+			this.render();
+		}
+	}, {
+		key: 'createPlaylist',
+		value: function createPlaylist() {}
+	}, {
+		key: 'render',
+		value: function render() {
+			var trackNodes = _.map(this.selectedTracks, function (track) {
+				return '<li class="playlist-builder--selected-track" data-id="' + track.id + '">' + track.name + '</li>';
+			});
+
+			$('.playlist-builder--selected-tracks').html(trackNodes);
+		}
+	}]);
+
+	return PlaylistBuilder;
+})();
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var TrackAnimeSelector = (function () {

@@ -27,6 +27,7 @@
                     <li><a class="site-header--nav-item" href="{{ route('home') }}">Home</a></li>
                     @if ($user)
                     <li><a href="{{ route('tracks.create') }}" class="site-header--nav-item">Upload a track</a></li>
+                    <li><a href="{{ route('playlists.create') }}" class="site-header--nav-item">Create a playlist</a></li>
                     @endif
                 </ul>
                 <div class="site-header--user-info">
@@ -56,6 +57,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="/public/js/vendor/underscore.js"></script>
         <script src="/public/js/vendor/howler.core.js"></script>
 
         <script src="/public/js/main.js"></script>
